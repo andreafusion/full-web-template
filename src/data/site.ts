@@ -7,8 +7,8 @@ export const site = {
   lang:        'es',
 
   location: {
-    street: 'Calle Example, 123',
-    city:   'Valencia, España',
+    street: 'Calle Cuenca, 21, Extramurs',
+    city:   '46007 Valencia, España',
   },
 
   hours: [
@@ -17,9 +17,9 @@ export const site = {
     { days: 'Domingo',         time: 'Cerrado'        },
   ],
 
-  whatsapp:        'https://wa.me/34123456789',
-  instagram:       'https://instagram.com/mimas.iconic',
-  instagramHandle: '@mimas.iconic',
+  whatsapp:        'https://wa.me/34696626435',
+  instagram:       'https://instagram.com/mimasiconic',
+  instagramHandle: '@mimasiconic',
   bookingUrl:      '/reservar',
 
   // ⚠️ Reemplaza con tu URL real de Calendly
