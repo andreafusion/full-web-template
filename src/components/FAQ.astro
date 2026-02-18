@@ -1,0 +1,54 @@
+---
+import { faqItems } from '../data/faq';
+---
+
+<section id="faq" class="faq section" aria-labelledby="faq-heading">
+  <div class="container">
+    <h2 id="faq-heading" class="section__title">Preguntas frecuentes</h2>
+
+    <dl class="faq__list">
+      {faqItems.map((item, i) => (
+        <div class="faq__item">
+          <dt>
+            <button
+              class="faq__question"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-btn-${i}`}
+            >
+              {item.question}
+              <span class="faq__icon" aria-hidden="true">+</span>
+            </button>
+          </dt>
+          <dd
+            class="faq__answer"
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-btn-${i}`}
+            hidden
+          >
+            <p>{item.answer}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll<HTMLButtonElement>('.faq__question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const answerId = btn.getAttribute('aria-controls');
+        if (!answerId) return;
+        const answer = document.getElementById(answerId) as HTMLElement | null;
+        const icon   = btn.querySelector('.faq__icon')   as HTMLElement | null;
+
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (answer) answer.hidden = expanded;
+        if (icon)   icon.textContent = expanded ? '+' : '−';
+      });
+    });
+  });
+</script>

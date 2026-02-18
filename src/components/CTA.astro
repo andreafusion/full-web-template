@@ -1,0 +1,21 @@
+---
+import { site } from '../data/site';
+---
+
+<section class="cta section" aria-labelledby="cta-heading">
+  <div class="container cta__inner">
+    <h2 id="cta-heading">¿Lista para tus próximas uñas favoritas?</h2>
+    <div class="cta__actions">
+      <a href={site.bookingUrl} class="btn btn--primary">Reservar cita</a>
+      <a
+        href={site.whatsapp}
+        class="btn btn--secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar por WhatsApp"
+      >
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

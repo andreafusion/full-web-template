@@ -1,0 +1,41 @@
+---
+import { site } from '../data/site';
+import { testimonials } from '../data/testimonials';
+---
+
+<section class="hero" aria-label="Presentación">
+  <div class="hero__content">
+    <h1 class="hero__title">Uñas bonitas.<br />Sin exagerar.</h1>
+    <p class="hero__subtitle">
+      Natural, cuidadas y con ese toque glam que marca la diferencia.
+    </p>
+    <div class="hero__actions">
+      <a href={site.bookingUrl} class="btn btn--primary">Reservar cita</a>
+      <a href="#galeria"        class="btn btn--secondary">Ver trabajos</a>
+    </div>
+  </div>
+
+  <div class="hero__image">
+    <img
+      src="/assets/img/nails-05.webp"
+      alt="Manicura elegante natural"
+      width="600"
+      height="700"
+      loading="eager"
+      fetchpriority="high"
+    />
+  </div>
+
+  <div class="hero__social-proof" aria-label="Valoraciones de clientas">
+    <p class="hero__stars" aria-label="5 estrellas">★★★★★</p>
+    <p class="hero__count">Más de 120 clientas felices</p>
+    <div class="hero__testimonials">
+      {testimonials.map(t => (
+        <figure class="hero__testimonial">
+          <blockquote>"{t.quote}"</blockquote>
+          <figcaption>— {t.author}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

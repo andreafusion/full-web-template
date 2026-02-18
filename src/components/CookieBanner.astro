@@ -1,0 +1,44 @@
+---
+---
+
+<div
+  class="cookie-banner"
+  id="cookie-banner"
+  role="region"
+  aria-label="Aviso de cookies"
+  aria-live="polite"
+  hidden
+>
+  <p>
+    Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro
+    uso de cookies. <a href="/legal/cookies">Más información</a>
+  </p>
+  <div class="cookie-banner__actions">
+    <button id="cookie-accept" class="btn btn--primary btn--sm">Aceptar</button>
+    <button id="cookie-reject" class="btn btn--secondary btn--sm">Rechazar</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const banner = document.getElementById('cookie-banner') as HTMLElement | null;
+    if (!banner) return;
+
+    let accepted = false;
+    try { accepted = !!localStorage.getItem('cookies-accepted'); } catch (_e) {}
+
+    if (!accepted) {
+      banner.hidden = false;
+    }
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      try { localStorage.setItem('cookies-accepted', 'true'); } catch (_e) {}
+      banner.hidden = true;
+    });
+
+    document.getElementById('cookie-reject')?.addEventListener('click', () => {
+      try { localStorage.setItem('cookies-accepted', 'false'); } catch (_e) {}
+      banner.hidden = true;
+    });
+  });
+</script>

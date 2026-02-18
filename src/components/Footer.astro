@@ -1,0 +1,58 @@
+---
+import { site } from '../data/site';
+
+const legalLinks = [
+  { href: '/legal/privacidad',   label: 'Política de privacidad'  },
+  { href: '/legal/cookies',      label: 'Política de cookies'     },
+  { href: '/legal/aviso',        label: 'Aviso legal'             },
+  { href: '/legal/cancelacion',  label: 'Política de cancelación' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__grid">
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Ubicación</h3>
+      <address>
+        {site.location.street}<br />
+        {site.location.city}
+      </address>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Horarios</h3>
+      <ul>
+        {site.hours.map(h => (
+          <li>{h.days}: <strong>{h.time}</strong></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Sígueme</h3>
+      <a
+        href={site.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Instagram de ${site.brand}`}
+      >
+        {site.instagramHandle}
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer__bottom">
+    <nav aria-label="Pie de página legal">
+      <ul class="footer__legal" role="list">
+        {legalLinks.map(({ href, label }) => (
+          <li><a href={href}>{label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <p class="footer__copy">© {year} {site.brand}. Todos los derechos reservados.</p>
+  </div>
+</footer>

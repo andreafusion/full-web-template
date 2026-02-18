@@ -1,0 +1,41 @@
+---
+import Base   from '../layouts/Base.astro';
+import Nav    from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`Reservar cita — ${site.brand}`}
+  description="Reserva tu cita de manicura online. Elige el día y hora que mejor te venga."
+>
+  <Nav />
+  <main id="main-content" class="reservar-page">
+    <div class="reservar-header">
+      <h1>Reserva tu cita</h1>
+      <p>Elige el día y la hora que mejor te vengan.</p>
+    </div>
+
+    <div class="calendly-wrapper" aria-label="Calendario de reservas">
+      <iframe
+        src={`${site.calendlyUrl}?hide_gdpr_banner=1&primary_color=e8c4c4`}
+        width="100%"
+        height="700"
+        frameborder="0"
+        title="Reservar cita con Mimas Iconic"
+        allow="payment"
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <p class="calendly-fallback">
+      ¿Problemas para ver el calendario?
+      <a href={site.calendlyUrl} target="_blank" rel="noopener noreferrer">
+        Haz clic aquí para abrirlo en nueva pestaña
+      </a>
+      o escríbenos por{' '}
+      <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>.
+    </p>
+  </main>
+  <Footer />
+</Base>

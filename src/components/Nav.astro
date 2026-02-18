@@ -1,0 +1,75 @@
+---
+import { site } from '../data/site';
+
+const navLinks = [
+  { href: '/#servicios', label: 'Servicios' },
+  { href: '/#galeria',   label: 'Galería'   },
+  { href: '/#sobre-mi',  label: 'Sobre mí'  },
+  { href: '/#faq',       label: 'FAQ'        },
+];
+---
+
+<header class="nav" role="banner">
+  <nav class="nav__container" aria-label="Navegación principal">
+
+    <a href="/" class="nav__logo" aria-label={`${site.brand} — Inicio`}>
+      {site.brand}
+    </a>
+
+    <ul class="nav__links" role="list">
+      {navLinks.map(({ href, label }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+      <li>
+        <a href={site.bookingUrl} class="btn btn--primary btn--sm">Reservar</a>
+      </li>
+    </ul>
+
+    <button
+      class="nav__hamburger"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      id="hamburger-btn"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div class="nav__mobile" id="mobile-menu" hidden>
+    <ul role="list">
+      {navLinks.map(({ href, label }) => (
+        <li><a href={href}>{label}</a></li>
+      ))}
+      <li>
+        <a href={site.bookingUrl} class="btn btn--primary">Reservar cita</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn  = document.getElementById('hamburger-btn') as HTMLButtonElement | null;
+    const menu = document.getElementById('mobile-menu')   as HTMLDivElement | null;
+
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      menu.hidden = open;
+      btn.setAttribute('aria-label', open ? 'Abrir menú' : 'Cerrar menú');
+    });
+
+    menu.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => {
+        menu.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Abrir menú');
+      })
+    );
+  });
+</script>

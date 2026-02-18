@@ -1,0 +1,30 @@
+---
+import Base            from '../layouts/Base.astro';
+import Nav             from '../components/Nav.astro';
+import Hero            from '../components/Hero.astro';
+import Services        from '../components/Services.astro';
+import Gallery         from '../components/Gallery.astro';
+import About           from '../components/About.astro';
+import HowItWorks      from '../components/HowItWorks.astro';
+import FAQ             from '../components/FAQ.astro';
+import CTA             from '../components/CTA.astro';
+import Footer          from '../components/Footer.astro';
+import CookieBanner    from '../components/CookieBanner.astro';
+import NewsletterModal from '../components/NewsletterModal.astro';
+---
+
+<Base>
+  <Nav />
+  <main id="main-content">
+    <Hero />
+    <Services />
+    <Gallery />
+    <About />
+    <HowItWorks />
+    <FAQ />
+    <CTA />
+  </main>
+  <Footer />
+  <CookieBanner />
+  <NewsletterModal />
+</Base>
