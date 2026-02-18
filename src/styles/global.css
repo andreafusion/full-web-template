@@ -431,6 +431,22 @@ h1,h2,h3,h4 {
 .service-card__meta strong { color: var(--charcoal); font-size: 1rem; }
 .service-card__body .btn { margin-top: .75rem; align-self: flex-start; }
 
+.services__note {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: .95rem;
+  color: var(--charcoal-light);
+}
+.services__note a {
+  color: var(--mauve-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+.services__note a:hover {
+  color: var(--charcoal);
+}
 /* ============================================================
    GALLERY
    ============================================================ */
