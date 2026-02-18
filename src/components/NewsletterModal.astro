@@ -48,7 +48,8 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  // Run after ALL resources are loaded (images, fonts, etc.)
+  window.addEventListener('load', () => {
     const overlay    = document.getElementById('newsletter-overlay') as HTMLElement | null;
     const closeBtn   = document.getElementById('modal-close')        as HTMLButtonElement | null;
     const form       = document.getElementById('newsletter-form')    as HTMLFormElement | null;
@@ -56,6 +57,7 @@
 
     if (!overlay) return;
 
+    // ── Helpers ──────────────────────────────────────────────
     function openModal() {
       overlay!.hidden = false;
       closeBtn?.focus();
@@ -63,15 +65,28 @@
 
     function closeModal() {
       overlay!.hidden = true;
-      try { sessionStorage.setItem('newsletter-dismissed', 'true'); } catch (_e) {}
+      // Store dismissal with 24-hour expiry so it re-shows the next day
+      try {
+        const expires = Date.now() + 24 * 60 * 60 * 1000;
+        localStorage.setItem('newsletter-dismissed', String(expires));
+      } catch (_e) {}
     }
 
-    let dismissed = false;
-    try { dismissed = !!sessionStorage.getItem('newsletter-dismissed'); } catch (_e) {}
-    if (!dismissed) {
-      setTimeout(openModal, 8000);
+    // ── Should we show it? ────────────────────────────────────
+    let shouldShow = true;
+    try {
+      const stored = localStorage.getItem('newsletter-dismissed');
+      if (stored && Date.now() < Number(stored)) {
+        shouldShow = false; // still within the 24h window
+      }
+    } catch (_e) {}
+
+    if (shouldShow) {
+      // 10 seconds after page fully loaded
+      setTimeout(openModal, 10_000);
     }
 
+    // ── Event listeners ───────────────────────────────────────
     closeBtn?.addEventListener('click', (e) => {
       e.stopPropagation();
       closeModal();

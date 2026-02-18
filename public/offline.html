@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sin conexión — Mimas Iconic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Poppins:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream:      #FAF7F4;
+        --rose-dust:  #E8C4C4;
+        --mauve-dark: #9A7F87;
+        --charcoal:   #3D3836;
+        --charcoal-l: #5D5856;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background: var(--cream);
+        color: var(--charcoal);
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+      }
+      .icon {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        opacity: .7;
+      }
+      h1 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        margin-bottom: .75rem;
+      }
+      p {
+        color: var(--charcoal-l);
+        max-width: 380px;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+      a {
+        display: inline-block;
+        padding: .875rem 2rem;
+        background: var(--rose-dust);
+        color: var(--charcoal);
+        border-radius: 3rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background .3s;
+      }
+      a:hover { background: var(--mauve-dark); color: #fff; }
+    </style>
+  </head>
+  <body>
+    <div class="icon" aria-hidden="true">💅</div>
+    <h1>Sin conexión</h1>
+    <p>
+      Parece que no tienes conexión a internet en este momento.
+      Vuelve cuando tengas señal y te esperamos con las uñas listas.
+    </p>
+    <a href="/" onclick="window.location.reload()">Intentar de nuevo</a>
+  </body>
+</html>

@@ -39,7 +39,6 @@ const canonicalURL = new URL(Astro.url.pathname, site.url);
     <meta name="twitter:image" content={new URL(ogImage, site.url)} />
 
     <link rel="canonical" href={canonicalURL} />
-    <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#E8C4C4" />
 
     <!-- Google Fonts -->
@@ -55,12 +54,5 @@ const canonicalURL = new URL(Astro.url.pathname, site.url);
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <slot />
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js').catch(() => {});
-        });
-      }
-    </script>
   </body>
 </html>

@@ -512,6 +512,14 @@ h1,h2,h3,h4 {
   border-radius: var(--radius);
   box-shadow: var(--shadow-soft);
   position: relative;
+  /* Subtle border, invisible by default */
+  border: 2px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.how__step:hover {
+  border-color: var(--rose-dust);
+  box-shadow: 0 8px 32px rgba(232, 196, 196, 0.35);
+  transform: translateY(-3px);
 }
 .how__step::before {
   content: '';
@@ -933,4 +941,117 @@ h1,h2,h3,h4 {
   .gallery__grid { grid-template-columns: 1fr; }
   .hero__image img { height: 300px; }
   .hero__title { font-size: 2.75rem; }
+}
+
+/* ============================================================
+   UX / ACCESSIBILITY IMPROVEMENTS
+   ============================================================ */
+
+/* -- Smooth scroll only for users who don't prefer reduced motion -- */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* -- Service cards: consistent hover lift (already on cards, ensure gallery too) -- */
+.gallery__grid li {
+  cursor: zoom-in;
+  border: 2px solid transparent;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.gallery__grid li:hover {
+  border-color: var(--rose-dust);
+  transform: translateY(-2px);
+}
+
+/* -- FAQ item: highlight on open -- */
+.faq__item:has(.faq__question[aria-expanded="true"]) {
+  border-left: 3px solid var(--rose-dust);
+}
+
+/* -- Buttons: larger tap target on mobile -- */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 48px;
+    padding: 0.875rem 1.5rem;
+  }
+  .btn--sm {
+    min-height: 40px;
+  }
+  /* Stack hero actions vertically on small screens */
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .hero__actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  /* CTA actions stack on mobile */
+  .cta__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .cta__actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  /* Modal full-width on small screens */
+  .modal {
+    padding: 2rem 1.5rem;
+  }
+  /* Cookie banner buttons full-width */
+  .cookie-banner__actions {
+    width: 100%;
+    justify-content: center;
+  }
+  /* Footer bottom stacks */
+  .footer__legal {
+    gap: 0.5rem 1rem;
+  }
+}
+
+/* -- Nav: active page indicator (Astro sets aria-current) -- */
+.nav__links a[aria-current="page"]:not(.btn) {
+  color: var(--charcoal);
+  font-weight: 500;
+}
+.nav__links a[aria-current="page"]:not(.btn)::after {
+  width: 100%;
+}
+
+/* -- Scrollbar styling (Webkit) -- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb {
+  background: var(--rose-dust);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--mauve); }
+
+/* -- Selection colour -- */
+::selection {
+  background: var(--rose-dust);
+  color: var(--charcoal);
+}
+
+/* -- Floating CTA button (mobile only) -- */
+.floating-cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .floating-cta {
+    display: flex;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 900;
+    box-shadow: 0 4px 20px rgba(232,196,196,.6);
+  }
 }
