@@ -1,0 +1,198 @@
+---
+import Base   from '../layouts/Base.astro';
+import Nav    from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { services } from '../data/services';
+import { site } from '../data/site';
+
+const featured   = services.filter(s => s.featured);
+const additional = services.filter(s => !s.featured);
+---
+
+<Base
+  title={`Todos los servicios — ${site.brand}`}
+  description="Consulta todos los servicios disponibles: manicura, gel, relleno, pedicura y más. Precios y duraciones en Mimas Iconic, Valencia."
+>
+  <Nav />
+  <main id="main-content" class="servicios-page">
+    <div class="container">
+
+      <header class="servicios-page__header">
+        <h1>Todos los servicios</h1>
+        <p>Aquí tienes todo lo que ofrezco. Si tienes dudas, escríbeme sin compromiso.</p>
+        <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" class="btn btn--secondary btn--sm">
+          Preguntar por WhatsApp
+        </a>
+      </header>
+
+      <!-- Servicios principales -->
+      <section aria-labelledby="featured-heading">
+        <h2 id="featured-heading" class="servicios-page__group-title">Servicios principales</h2>
+        <ul class="servicios-list" role="list">
+          {featured.map(s => (
+            <li class="servicios-list__item">
+              <div class="servicios-list__info">
+                <h3 class="servicios-list__name">{s.name}</h3>
+                <p class="servicios-list__desc">{s.description}</p>
+              </div>
+              <div class="servicios-list__meta">
+                <span class="servicios-list__duration">{s.duration}</span>
+                <span class="servicios-list__price">Desde {s.priceFrom}€</span>
+                <a href={site.bookingUrl} class="btn btn--primary btn--sm">Reservar</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <!-- Servicios adicionales -->
+      <section aria-labelledby="additional-heading">
+        <h2 id="additional-heading" class="servicios-page__group-title">Servicios adicionales</h2>
+        <ul class="servicios-list" role="list">
+          {additional.map(s => (
+            <li class="servicios-list__item">
+              <div class="servicios-list__info">
+                <h3 class="servicios-list__name">{s.name}</h3>
+                <p class="servicios-list__desc">{s.description}</p>
+              </div>
+              <div class="servicios-list__meta">
+                <span class="servicios-list__duration">{s.duration}</span>
+                <span class="servicios-list__price">Desde {s.priceFrom}€</span>
+                <a href={site.bookingUrl} class="btn btn--primary btn--sm">Reservar</a>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <div class="servicios-page__footer-cta">
+        <a href={site.bookingUrl} class="btn btn--primary">Reservar cita</a>
+        <a href="/" class="btn btn--secondary">Volver al inicio</a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .servicios-page {
+    padding-block: 5rem 6rem;
+  }
+
+  /* ── Header ─────────────────────────────────── */
+  .servicios-page__header {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+  .servicios-page__header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--charcoal);
+  }
+  .servicios-page__header p {
+    color: var(--charcoal-light);
+    max-width: 460px;
+    font-size: 1.05rem;
+  }
+
+  /* ── Group title ─────────────────────────────── */
+  .servicios-page__group-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--charcoal);
+    margin-bottom: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 2px solid var(--rose-dust);
+  }
+
+  /* ── List ────────────────────────────────────── */
+  .servicios-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3.5rem;
+  }
+
+  .servicios-list__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--cream-dark);
+    transition: background var(--transition);
+  }
+  .servicios-list__item:first-child {
+    border-top: 1px solid var(--cream-dark);
+  }
+  .servicios-list__item:hover {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+  }
+
+  .servicios-list__info {
+    flex: 1;
+  }
+  .servicios-list__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: .25rem;
+  }
+  .servicios-list__desc {
+    font-size: .9rem;
+    color: var(--charcoal-light);
+    line-height: 1.6;
+  }
+
+  .servicios-list__meta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+  }
+  .servicios-list__duration {
+    font-size: .85rem;
+    color: var(--charcoal-light);
+    white-space: nowrap;
+  }
+  .servicios-list__price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--mauve-dark);
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* ── Footer CTA ──────────────────────────────── */
+  .servicios-page__footer-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+  }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 640px) {
+    .servicios-list__item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .servicios-list__meta {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .servicios-list__price {
+      text-align: left;
+    }
+  }
+</style>

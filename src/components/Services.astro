@@ -8,15 +8,9 @@ import { site } from '../data/site';
     <h2 id="services-heading" class="section__title">Servicios</h2>
 
     <ul class="services__grid" role="list">
-      {services.map(s => (
+      {services.filter(s => s.featured).map(s => (
         <li class="service-card">
-          <img
-            src={s.image}
-            alt={s.name}
-            width="400"
-            height="220"
-            loading="lazy"
-          />
+          <img src={s.image} alt={s.name} width="400" height="220" loading="lazy" />
           <div class="service-card__body">
             <h3 class="service-card__name">{s.name}</h3>
             <p class="service-card__desc">{s.description}</p>
@@ -30,11 +24,10 @@ import { site } from '../data/site';
         </li>
       ))}
     </ul>
-    </p>
+
     <p class="services__note">
-      Retirado, relleno, reparación, decoración por uña y pedicura también están disponibles.
-      <a href={site.whatsapp} target="_blank" rel="noopener noreferrer"><br>
-        ➡️ Para ver lista la completa, pregúntame por WhatsApp
-      </a>
+      Retirado, relleno, reparación, decoración por uña y pedicura también están disponibles.<br>
+      <a href="/servicios">➡️ Ver lista completa de servicios</a>
+    </p>
   </div>
 </section>
