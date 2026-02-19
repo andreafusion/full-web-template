@@ -2,7 +2,7 @@ export const site = {
   brand:       'Mimas Iconic',
   tagline:     'Manicura Natural y Elegante en Valencia',
   description: 'Manicura natural y elegante en Valencia. Diseños delicados personalizados sin exagerar.',
-  url:         'https://mimas-iconic-n6hi.vercel.app',
+  url:         'https://mimas-iconic-astro.andreafusiondigital.workers.dev/',
   ogImage:     '/assets/img/nails-05.webp',
   lang:        'es',
 
