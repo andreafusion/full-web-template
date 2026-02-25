@@ -1,7 +1,7 @@
 ---
 import { site } from "../data/site";
 import "../styles/global.css";
-
+import NewsletterModal from '../components/NewsletterModal.astro';
 interface Props {
   title?: string;
   description?: string;
@@ -72,5 +72,7 @@ const canonicalURL = new URL(Astro.url.pathname, site.url);
   <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <slot />
+    {site.newsletter.enabled && <NewsletterModal />}
+
   </body>
 </html>
